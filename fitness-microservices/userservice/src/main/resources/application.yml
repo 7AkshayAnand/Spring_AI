@@ -1,0 +1,20 @@
+server:
+   port: 8081
+
+
+spring:
+  application:
+    name:userservice
+  datasource:
+      url: jdbc:postgresql://localhost:5432/fitness-micro-user
+      username: postgres
+      password: akshay
+
+  jpa:
+     hibernate:
+        ddl-auto: update
+     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+
