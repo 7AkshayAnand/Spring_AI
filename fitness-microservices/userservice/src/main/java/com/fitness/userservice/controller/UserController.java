@@ -1,16 +1,31 @@
 package com.fitness.userservice.controller;
 
+import com.fitness.userservice.dto.*;
 import com.fitness.userservice.services.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 @AllArgsConstructor
 public class UserController {
 
-    private UserService userService;
+
+    private final UserService userService;
+
+    @PostMapping("/register")
+    public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterRequest request){
+        return ResponseEntity.ok(userService.register(request));
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponse> getUserProfile(@PathVariable String userId){
+        return ResponseEntity.ok(userService.getUserProfile(userId));
+    }
 
 
 }
